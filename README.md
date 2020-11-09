@@ -5,11 +5,20 @@ std::bitset implementation in pure nim, with identical signatures. It also inclu
 import bitset
 
 var bs:Bitset[210] # 210 bits, or 27 bytes allocated (not all of 27th byte used)
+
+# set a decimal value of 14 in binary
 bs[0] = 0 # not necessary
 bs[1] = 1
 bs[2] = 1
-assert bs.bytes[0] == 6
-assert bs.count() == 2
+bs[3] = 1
+
+echo bs # 0000...<redacted>...00001110
+
+assert bs.len() == 210
+assert sizeof bs == 27
+assert bs.bytes[0] == 14
+assert bs.count() == 3
+assert bs.unsafeAddr == bs.bytes[0].unsafeAddr
 ```
 
 #### Possible Future Features
